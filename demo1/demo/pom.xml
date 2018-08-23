@@ -71,6 +71,20 @@
             <optional>true</optional>
         </dependency>
 
+        <!-- 添加mysql的依赖 -->
+        <dependency>
+            <groupId>mysql</groupId>
+            <artifactId>mysql-connector-java</artifactId>
+            <version>8.0.12</version>
+        </dependency>
+
+        <!-- 添加spring-data-jpa依赖 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-jpa</artifactId>
+            <version>2.0.4.RELEASE</version>
+        </dependency>
+
 
     </dependencies>
 
@@ -81,6 +95,18 @@
                 <groupId>org.springframework.boot</groupId>
                 <artifactId>spring-boot-maven-plugin</artifactId>
             </plugin>
+
+            <!--热部署，配合devtools一起用-->
+            <plugin>
+                <groupId>org.springframework.boot</groupId>
+                <artifactId>spring-boot-maven-plugin</artifactId>
+                <configuration>
+                    <!-- fork 如果没有该配置，devtools不会起作用-->
+                    <fork>true</fork>
+                    <addResources>true</addResources>
+                </configuration>
+            </plugin>
+
         </plugins>
     </build>
 
