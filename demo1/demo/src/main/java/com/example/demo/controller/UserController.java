@@ -6,13 +6,20 @@ import com.example.demo.model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
+import java.util.Date;
+
+
 @RestController
 @RequestMapping("user")
 public class UserController {
 
+    /**
+     * Spring Boot默认使用的json解析框架是jackson，已经帮我们做了
+     * @return
+     */
     @RequestMapping("getUser")
     public User getUser(){
-        User user = new User(10080,"mayday","123456");
+        User user = new User(10080,"mayday","123456",new Date());
 
         return user;
     }

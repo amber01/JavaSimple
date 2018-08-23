@@ -24,16 +24,18 @@
         <java.version>1.8</java.version>
     </properties>
 
+    <!-- dependencies是用来引入第三方的依赖库(jar) -->
     <dependencies>
 
         <!-- https://mvnrepository.com/artifact/org.projectlombok/lombok -->
+        <!-- lombok用来生成自动get和set方法的 -->
         <dependency>
             <groupId>org.projectlombok</groupId>
             <artifactId>lombok</artifactId>
             <version>1.18.0</version>
             <scope>provided</scope>
         </dependency>
-
+        <!--添加springboot基础依赖-->
         <dependency>
             <groupId>org.springframework.boot</groupId>
             <artifactId>spring-boot-starter-web</artifactId>
@@ -45,10 +47,35 @@
             <scope>test</scope>
         </dependency>
 
+        <!-- https://mvnrepository.com/artifact/com.alibaba/fastjson -->
+        <!--添加fastjson依赖,用来解析json的框架-->
+        <dependency>
+            <groupId>com.alibaba</groupId>
+            <artifactId>fastjson</artifactId>
+            <version>1.2.49</version>
+        </dependency>
+
+        <!-- springloaded热部署jar包 -->
+        <!--<dependency>-->
+            <!--<groupId>org.springframework</groupId>-->
+            <!--<artifactId>springloaded</artifactId>-->
+            <!--<version>1.2.8.RELEASE</version>-->
+            <!--<scope>provided</scope>-->
+        <!--</dependency>-->
+
+        <!-- devtools热部署jar包 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-devtools</artifactId>
+            <version>2.0.4.RELEASE</version>
+            <optional>true</optional>
+        </dependency>
+
 
     </dependencies>
 
     <build>
+        <!--引入插件-->
         <plugins>
             <plugin>
                 <groupId>org.springframework.boot</groupId>
@@ -56,6 +83,5 @@
             </plugin>
         </plugins>
     </build>
-
 
 </project>
