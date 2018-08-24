@@ -42,9 +42,10 @@ public class CatController {
         cat.setCatAge(age);
         cat.setCatName(name);
         catService.save(cat);
-
+        System.out.println("testRequestMapping");
         return "注册成功";
     }
+
     @RequestMapping("/delete")
     public String delete(){
         catService.delete(1);
