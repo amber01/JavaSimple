@@ -1,8 +1,8 @@
-package com.example.demo.controller;
+package com.example.demo.showJsonDemo.controller;
 
 
-import com.example.demo.model.Login;
-import com.example.demo.model.User;
+import com.example.demo.showJsonDemo.model.Login;
+import com.example.demo.showJsonDemo.model.User;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
