@@ -6,7 +6,7 @@ import org.springframework.data.repository.CrudRepository;
 /**
  * @ Author     ：tank
  * @ Date       ：Created in 17:14 2018/8/24
- * @ Description：Repository一般都是用interface
+ * @ Description：Repository一般都是用interface，CrudRepository是用于数据持久化的操作
  * @ Modified By：
  * @Version:
  *
@@ -14,5 +14,6 @@ import org.springframework.data.repository.CrudRepository;
  *
  */
 public interface CatRepository extends CrudRepository<Cat,Integer> {
+
 
 }

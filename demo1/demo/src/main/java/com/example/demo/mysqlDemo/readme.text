@@ -1,0 +1,15 @@
+学习内容有:
+1. 通过JdbcTemplate（spring自己的）框架来对SQL的增删改查，可以写对应的SQL。JDBCTemplate是Spring对jdbc的封装，但sql还是得自己写，一旦要写sql，则会增加灵活和复杂性，当然也不利于跨数据库
+2. 学习到Hibernate框架(别人的封装的,不是spring自己的),它是一个数据持久框架，它对JDBC进行了非常轻量级的对象封装。通过@Entity关键字将实体Bean属性映射到数据库中。
+3. 目前我接触到的Spring的数据库操作主要包括两种，主要使用JdbcTemplate和HibernateTemplate。后者用于结合Hibernate操作。两者都提供了持久层访问模板化，只需要获得一个SessionFactory就可以执行持久化操作。可以完成增删改查操作。获取JdbcTemplate和HibernateTemplate的方式有两种。
+4. JdbcTemplate、Hibernate和MyBatis都是在JDBC上封装的。
+
+*bean、dao、repository、service和controller的分层结构。
+1. bean(或entity)，先创建实体对象，如:Cat这个实体对象。加入@Entity关键字
+2. repository通过接口的方式继承CrudRepository，并写入2个参数，"实体类名称"(如Cat) "id的类型"，是用于数据持久化的操作。
+3. dao主要是对数据库的操作(增删改查)，dao层一般使用Hibernate或者jdbcTemplate或者MyBatis连接数据库，操作数据库。
+4. service处理业务相关的，引用对应的Dao数据库操作。
+5. controller引用对应的Service层，在这里结合Struts的配置文件，跳转到指定的页面，当然也能接受页面传递的请求数据，也可以做些计算处理。
+
+其他：
+1. 在控制器将返回的对象固定，所有json返回都用这个对象。对象属性有：code，message，data。其中data就是查询结果，list或者字典。
