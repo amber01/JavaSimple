@@ -37,6 +37,9 @@ public class CatDao {
 //        String sql = "select *from cat where cat_name=?";
 //        RowMapper<Cat> rowMapper = new BeanPropertyRowMapper<>(Cat.class);
 //        List<Cat> cat = (List)jdbcTemplate.queryForObject(sql, new Object[]{cateName}, rowMapper);
+//
+//
+//        System.out.print("list"+ cat);
 
         return cat;
     }

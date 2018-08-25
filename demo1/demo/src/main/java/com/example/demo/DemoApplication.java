@@ -3,6 +3,7 @@ package com.example.demo;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
@@ -16,6 +17,7 @@ import java.util.List;
 
 
 @SpringBootApplication
+@MapperScan("com.example.*")  //扫描该包下相应的Class，主要是MyBatis的持久化类。
 public class DemoApplication {
 
     /***

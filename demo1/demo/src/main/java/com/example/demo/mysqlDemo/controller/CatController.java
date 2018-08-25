@@ -104,6 +104,6 @@ public class CatController {
         response.message = "数据获取完成";
         response.data = catService.selectByCatName(cateName);
 
-        return response;
+        return  response;
     }
 }
