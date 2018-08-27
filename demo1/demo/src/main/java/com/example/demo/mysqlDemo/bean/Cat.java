@@ -13,7 +13,7 @@ import javax.persistence.Id;
 /**
  * @ Author     ：tank
  * @ Date       ：Created in 16:46 2018/8/24
- * @ Description：创建一个实体类
+ * @ Description：创建一个实体类。这个实体类是由hibernate框架来映射到数据库的。@Entity，@Id，@GeneratedValue。这些都是hibernate框架的注解
  * @ Modified By：
  * @Version:
  * 如何持久化呢？

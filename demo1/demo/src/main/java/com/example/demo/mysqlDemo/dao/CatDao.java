@@ -13,7 +13,8 @@ import java.util.List;
  * @ Author     ：tank
  * @ Date       ：Created in 12:40 2018/8/25
  * @ Description：@Repository注解，标注这是一个持久化操作对象,标注数据访问组件，即DAO组件(repository-------仓库; 贮藏室，容器。)
- *                JdbcTemplate:主要是用来操作数据库的，通过写SQL语句来操作
+ *                JdbcTemplate:主要是用来操作数据库的，通过写SQL语句来操作。
+ *                @Repository是spring框架中的注解；@Repository用于标注数据访问组件，即DAO组件；
  * @ Modified By：
  * @Version:
  */
