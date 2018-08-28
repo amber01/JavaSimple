@@ -3,8 +3,10 @@ package com.example.demo.mybatisDemo.service;
 import com.example.demo.mybatisDemo.entity.Person;
 import com.example.demo.mybatisDemo.mapper.PersonMapper;
 import org.hibernate.annotations.Source;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.stereotype.Service;
 
+import javax.transaction.Transactional;
 import java.util.List;
 
 /**
@@ -17,7 +19,8 @@ import java.util.List;
 @Service
 public class PersonService {
 
-    @Source
+
+    @Autowired
     private PersonMapper personMapper;
 
     public List<Person> findAll()

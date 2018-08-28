@@ -4,6 +4,7 @@ import com.example.demo.mysqlDemo.bean.Cat;
 import com.example.demo.mysqlDemo.service.CatService;
 import com.example.demo.showJsonDemo.model.ResponseDataInfo;
 import com.fasterxml.jackson.databind.ObjectMapper;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.*;
 
 import javax.annotation.Resource;
@@ -22,7 +23,7 @@ import java.util.List;
 @RequestMapping("/cat")
 public class CatController {
 
-    @Resource
+    @Autowired
     private CatService catService;
 
     @RequestMapping("/save")

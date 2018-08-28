@@ -1,6 +1,7 @@
 package com.example.demo.mysqlDemo.dao;
 
 import com.example.demo.mysqlDemo.bean.Cat;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.jdbc.core.BeanPropertyRowMapper;
 import org.springframework.jdbc.core.JdbcTemplate;
 import org.springframework.jdbc.core.RowMapper;
@@ -21,7 +22,7 @@ import java.util.List;
 
 @Repository
 public class CatDao {
-    @Resource
+    @Autowired
     private JdbcTemplate jdbcTemplate;
 
     public Cat selectByCatName(String cateName){

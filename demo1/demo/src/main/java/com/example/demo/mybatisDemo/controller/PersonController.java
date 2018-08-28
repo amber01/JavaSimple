@@ -4,6 +4,7 @@ import com.example.demo.mybatisDemo.mapper.PersonMapper;
 import com.example.demo.mybatisDemo.service.PersonService;
 import com.example.demo.showJsonDemo.model.ResponseDataInfo;
 import org.hibernate.annotations.Source;
+import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -18,7 +19,7 @@ import org.springframework.web.bind.annotation.RestController;
 @RequestMapping("userInfo")
 public class PersonController {
 
-    @Source
+    @Autowired
     PersonService personService;
 
     //********************myBatis的使用**********************//
