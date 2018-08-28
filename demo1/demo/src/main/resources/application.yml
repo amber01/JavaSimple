@@ -15,7 +15,6 @@ spring:
 
 
 
-
 #org.hibernate.boot.model.naming.ImplicitNamingStrategyLegacyJpaImpl
 
 mybatis:
