@@ -35,6 +35,6 @@ public class PersonService {
 
     public int deleteById(int id)
     {
-        return deleteById(id);
+        return personMapper.deleteById(id);
     }
 }
