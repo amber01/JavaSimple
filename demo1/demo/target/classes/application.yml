@@ -10,6 +10,9 @@ spring:
     username: root
     password: 123456
     driver-class-name: com.mysql.cj.jdbc.Driver
+  thymeleaf:
+    cache: false  #开发过程建议关闭缓存
+
   jpa:
     database : MYSQL
     show-sql : true
