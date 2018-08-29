@@ -16,25 +16,12 @@ import java.util.List;
  * @ Modified By：
  * @Version:
  */
-@Service
-public class PersonService {
 
+public interface PersonService {
 
-    @Autowired
-    private PersonMapper personMapper;
+    public List<Person> findAll(int pageNum, int pageSize);
 
-    public List<Person> findAll()
-    {
-        return personMapper.findAll();
-    }
+    public List<Person> findById(int id);
 
-    public List<Person> findById(int id)
-    {
-        return personMapper.findById(id);
-    }
-
-    public int deleteById(int id)
-    {
-        return personMapper.deleteById(id);
-    }
+    public int deleteById(int id);
 }

@@ -25,20 +25,18 @@ public class PersonController {
     PersonService personService;
 
     //********************myBatis的使用**********************//
-    @RequestMapping("/findAll")
+    @RequestMapping(value = "/findAll/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
     @ResponseBody
-    public ResponseDataInfo findAll() {
+    public ResponseDataInfo findAll(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
 
         ResponseDataInfo response = new ResponseDataInfo();
         response.code = 200;
         response.message = "数据获取完成";
-        response.data = personService.findAll();
+        response.data = personService.findAll(pageNum,pageSize);
 
         return response;
     }
 
-    //@RequestMapping(value = "deleteById",method = RequestMethod.POST)
-    //public ResponseDataInfo deleteById(@RequestParam("id")int id) throws IOException
     @RequestMapping("/deleteById/{id}")
     public int deleteById(@PathVariable("id") Integer id)
     {

@@ -10,8 +10,8 @@
         <!--<result column="name" jdbcType="VARCHAR" property="name" />-->
     <!--</resultMap>-->
 
-    <select id="findAll" parameterType="map" resultType="com.example.demo.mybatisDemo.entity.Person">
-            select *from person;
+    <select id="selectAll" resultType="com.example.demo.mybatisDemo.entity.Person">
+         select *from person
     </select>
 
     <select id="findById" parameterType="int" resultType="com.example.demo.mybatisDemo.entity.Person">

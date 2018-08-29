@@ -12,10 +12,10 @@ import java.util.List;
  * @ Modified By：
  * @Version:
  */
-@Mapper
+
 public interface PersonMapper {
 
-    public List<Person> findAll();
+    public List<Person> selectAll();
 
     public List<Person> findById(int id);
 
