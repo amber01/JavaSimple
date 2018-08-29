@@ -19,7 +19,7 @@
     </select>
 
     <delete id="deleteById" parameterType="int">
-        delete from person where id=#{id}
+        delete from person where id=#{id} 
     </delete>
 
 </mapper>
