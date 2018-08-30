@@ -1,0 +1,11 @@
+学习内容有：
+1. 将/resources下，新建的application.properties改成application.yml文件来配置。这样是更加简洁。
+2. RESTFul风格的api接口，在接口中添加参数进行请求调用
+3. myBatis的使用。其使用步骤是：
+   1）在mapper接口中编写好方法
+   2）在resources中创建一个xxxMapper.xml文件，然后在里面映射mapper接口中的方法，进行SQL操作。
+4. service包中编写的xxxService可以用interface来表示，然后再在同包中创建一个xxxServiceImpl的实现文件。最后再controller中调用xxxService方法。
+5. pagehelper框架的使用，该框架用于对myBatis进行分页操作，使用特别简单。
+6. 全局拦截错误日志。需要在类中加@ControllerAdvice注解。
+
+

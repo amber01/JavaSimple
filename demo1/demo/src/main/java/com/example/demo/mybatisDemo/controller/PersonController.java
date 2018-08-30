@@ -26,7 +26,6 @@ public class PersonController {
 
     //********************myBatis的使用**********************//
     @RequestMapping(value = "/findAll/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
-    @ResponseBody
     public ResponseDataInfo findAll(@PathVariable("pageNum") int pageNum, @PathVariable("pageSize") int pageSize) {
 
         ResponseDataInfo response = new ResponseDataInfo();
