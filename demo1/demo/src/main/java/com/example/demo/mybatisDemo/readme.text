@@ -7,5 +7,20 @@
 4. service包中编写的xxxService可以用interface来表示，然后再在同包中创建一个xxxServiceImpl的实现文件。最后再controller中调用xxxService方法。
 5. pagehelper框架的使用，该框架用于对myBatis进行分页操作，使用特别简单。
 6. 全局拦截错误日志。需要在类中加@ControllerAdvice注解。
+7. @Result修饰返回的结果。
+   1）如果实体类属性和数据库属性名保持一致，就不需要这个属性来修饰。
+   2）这个属性相当于XML配置文件中的<ResultMap>
+   具体代码为：
+   @Result(property="userNmae",column="user_name");
+8. Mybatis框架的一些总结：
+   1）#和$符号的区别？ #相对比较安全，$不全有可能会出现被攻击，SQL注入。
+   2）注解的动态方案语句有：(if test)、when for each。这些语句需要写在<script>标签中
+   3) 除了<script>标签中编写(if test)、when for each，还可以用@Provider方式来编写，这种更常用
+   4）Provider中常用的有：@InsertProvider，@UpdateProvider，@DeleteProvider和@SelectProvider，这些都是建立动态语言和让MyBatis执行这些语言。
+   5）Provider方式对SQL的判断和逻辑表达更加面向对象，直接用java的表达式就可以了。
+   6）Provider使用步骤，
+      1）创建一个PersonSqlProvider，然后定义一个findAll方法，并在该方法中通过Provider方式写一些SQL的逻辑表达式；
+      2）在PersonMapper中导入PersonSqlProvider，再定义一个对应的方法。并在方法上加上@SelectProvider(type=PersonSqlProvider.class,method="findAll")
+
 
 

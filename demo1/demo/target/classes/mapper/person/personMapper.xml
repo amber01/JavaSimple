@@ -10,6 +10,7 @@
         <!--<result column="name" jdbcType="VARCHAR" property="name" />-->
     <!--</resultMap>-->
 
+
     <select id="selectAll" resultType="com.example.demo.mybatisDemo.entity.Person">
          select *from person
     </select>

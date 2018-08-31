@@ -23,5 +23,6 @@ public class Person {
     private int age;
     private String email;
     private Date createDate;
+    private int sex;
 
 }

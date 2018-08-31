@@ -7,6 +7,7 @@ import org.springframework.context.annotation.Configuration;
  * @author zhuxiaomeng
  * @date 2018/1/2.
  * @email 154040976@qq.com
+ * 这里可以配置分页时候的一些规则
  */
 @Configuration
 public class PageHelperConfig {
