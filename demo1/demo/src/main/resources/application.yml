@@ -26,6 +26,7 @@ spring:
 mybatis:
   type-aliases-package: com.example.demo.mybatisDemo.entity
   mapper-locations: classpath:mapper/*/*.xml
+
   configuration:
     lazy-loading-enabled: false
     multiple-result-sets-enabled: true
@@ -33,6 +34,8 @@ mybatis:
     default-statement-timeout: 25000
     default-executor-type: reuse
     map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
 #pagehelper分页插件
 pagehelper:
     helperDialect: mysql

@@ -1,10 +1,12 @@
 package com.example.demo.mybatisDemo.controller;
 
+import com.example.demo.mybatisDemo.entity.Person;
 import com.example.demo.mybatisDemo.mapper.PersonMapper;
 import com.example.demo.mybatisDemo.service.PersonService;
 import com.example.demo.showJsonDemo.model.ResponseDataInfo;
 import org.hibernate.annotations.Source;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
@@ -58,4 +60,27 @@ public class PersonController {
 
         return response;
     }
+
+    //根据条件查询
+    @RequestMapping("/findAll1")
+    public ResponseDataInfo findAll1(@Param("name")String name, @Param("email")String email){
+
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = 200;
+        response.message = "查询成功";
+        response.data = personService.findAll1(name,email);
+
+        return response;
+    }
+
+    @RequestMapping()
+    public ResponseDataInfo updatePerson(Person person){
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = 200;
+        response.message = "查询成功";
+        response.data = personService.updatePerson(person);
+
+        return response;
+    }
+
 }

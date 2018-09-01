@@ -29,4 +29,7 @@ public interface PersonMapper {
     //@Select("delete from person where id=#{id}")
     public int deleteById(int id);
 
+    public List<Person> selectAll1(String name, String email);
+
+    public Person updatePerson(Person person);
 }

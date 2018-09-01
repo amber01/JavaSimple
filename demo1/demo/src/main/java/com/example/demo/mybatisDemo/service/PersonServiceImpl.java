@@ -50,4 +50,16 @@ public class PersonServiceImpl implements PersonService {
         return personMapper.deleteById(id);
     }
 
+    @Override
+    public List<Person> findAll1(String name,String email)
+    {
+        return personMapper.selectAll1(name,email);
+    }
+
+    @Override
+    public Person updatePerson(Person person)
+    {
+        return personMapper.updatePerson(person);
+    }
+
 }

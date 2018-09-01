@@ -24,4 +24,8 @@ public interface PersonService {
     public List<Person> findById(int id);
 
     public int deleteById(int id);
+
+    public List<Person> findAll1(String name,String email);
+
+    public Person updatePerson(Person person);
 }
