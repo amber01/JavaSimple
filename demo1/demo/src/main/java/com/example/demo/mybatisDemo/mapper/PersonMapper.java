@@ -31,5 +31,10 @@ public interface PersonMapper {
 
     public List<Person> selectAll1(String name, String email);
 
-    public Person updatePerson(Person person);
+    public List<Person> selectAll2(String name,String email);
+
+    public void updatePerson(Person person);
+
+    //根据传list的方式来查找
+    public List<Person> selectAll3(List<Integer>list);
 }

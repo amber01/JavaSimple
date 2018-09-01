@@ -10,7 +10,10 @@ import org.springframework.data.repository.query.Param;
 import org.springframework.web.bind.annotation.*;
 
 import javax.servlet.ServletException;
+import javax.transaction.Transactional;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.Arrays;
 
 /**
  * @ Author     ：tank
@@ -73,12 +76,40 @@ public class PersonController {
         return response;
     }
 
-    @RequestMapping()
-    public ResponseDataInfo updatePerson(Person person){
+    //根据条件查询
+    @RequestMapping("/findAll2")
+    public ResponseDataInfo findAl2(@Param("name")String name, @Param("email")String email){
+
         ResponseDataInfo response = new ResponseDataInfo();
         response.code = 200;
         response.message = "查询成功";
-        response.data = personService.updatePerson(person);
+        response.data = personService.findAll1(name,email);
+
+        return response;
+    }
+
+    //根据传list的方式来查找
+    @RequestMapping("/findAll3")
+    public ResponseDataInfo findAll3(Integer[] id){
+
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = 200;
+        response.message = "查询成功";
+        response.data = personService.findAll3(Arrays.asList(id));
+
+        return response;
+    }
+
+    //http://127.0.0.1:8080/userInfo/findAll3?id=2,3,5
+    @RequestMapping("/updatePerson")
+    public ResponseDataInfo updatePerson(Person person){
+
+        System.out.print("update finish!");
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = 200;
+        response.message = "查询成功";
+        response.data = person;
+        personService.updatePerson(person);
 
         return response;
     }

@@ -17,6 +17,7 @@ import java.util.List;
  * @Version:
  */
 
+
 public interface PersonService {
 
     public List<Person> findAll(int pageNum, int pageSize);
@@ -27,5 +28,10 @@ public interface PersonService {
 
     public List<Person> findAll1(String name,String email);
 
-    public Person updatePerson(Person person);
+    public List<Person> findAll2(String name,String email);
+
+    public void updatePerson(Person person);
+
+    //根据传list的方式来查找
+    public List<Person> findAll3(List<Integer>list);
 }

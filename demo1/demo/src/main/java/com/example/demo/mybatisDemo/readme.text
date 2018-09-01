@@ -42,4 +42,17 @@
       和剔除追加到条件末尾的任何不相关的逗号。
    3. 使用if+set标签修改后，如果某项为null则不进行更新，而是保持数据库原值。如下示例。
 
+   * if+trim替代where/set标签
+   1. trim是更灵活的去出多余关键字的标签，它可以实现where和set的效果。
+   * choose（when，otherwise）
+   1. 有时候我们并不想应用所有的条件，而只是想从多个选项中选择一个。如果使用if标签时，只要test中的表达式为true，就会执行
+      标签中的条件。MyBatis提供了choose元素。if标签是与(and)的关系，而choose标签是或（or）的关系。
+   2. choose标签是按顺序判断内部whern标签中的test条件是否成立，如果一个成立，则choose结束。当choose中所有when的条件都不满足时，
+      则执行otherwise中的sql。类似于switch语句。choose为switch，when为case，otherwise这位default；
+   * foreach（传值可以传一个数组，比如一个数组中放了很多要查询的id）
+   1. 对于动态SQL非常必须的，主要是迭代下一个集合，通常是用于IN条件。List实例将使用"list"作为键，数组实例以"array"作为键。
+   2. foreach元素是非常强大的，它允许你指定一个集合，声明集合项和索引变量，它们可以用在元素体内。它也允许你指定开放和关闭的字符串，
+      在迭代之间放置分隔符。这个元素是很智能的，它不会偶然地附加多余的分隔符。
+   3. 注意：你可以传递一个List实例或者数组作为参数对象给MyBatis。当你这么做的时候，MyBatis会自动将它包装在一个Map中，用名称
+      再作为键。List实例将会以"list"作为键，而数组实例将以"array"作为键。
 

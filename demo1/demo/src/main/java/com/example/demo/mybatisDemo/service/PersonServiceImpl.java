@@ -57,9 +57,21 @@ public class PersonServiceImpl implements PersonService {
     }
 
     @Override
-    public Person updatePerson(Person person)
+    public void updatePerson(Person person)
     {
-        return personMapper.updatePerson(person);
+        personMapper.updatePerson(person);
     }
 
+    @Override
+    public List<Person> findAll2(String name,String email)
+    {
+        return personMapper.selectAll2(name,email);
+    }
+
+    @Override
+    //根据传list的方式来查找
+    public List<Person> findAll3(List<Integer>list)
+    {
+        return personMapper.selectAll3(list);
+    }
 }
