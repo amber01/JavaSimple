@@ -4,6 +4,7 @@ import com.example.demo.mybatisDemo.entity.Person;
 import com.example.demo.mybatisDemo.mapper.PersonMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
@@ -38,7 +39,9 @@ public class PersonServiceImpl implements PersonService {
         return personMapper.selectAll();
     }
 
+    //到service层对应的方法中来添加需要添加的缓存
     @Override
+    @Cacheable(value = "person")
     public List<Person> findById(int id)
     {
         return personMapper.findById(id);
@@ -73,5 +76,11 @@ public class PersonServiceImpl implements PersonService {
     public List<Person> findAll3(List<Integer>list)
     {
         return personMapper.selectAll3(list);
+    }
+
+    @Override
+    public int save(Person person)
+    {
+        return personMapper.save(person);
     }
 }

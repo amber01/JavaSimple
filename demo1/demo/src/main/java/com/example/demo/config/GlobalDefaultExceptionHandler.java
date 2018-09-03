@@ -1,11 +1,8 @@
-package com.example.demo.conf;
+package com.example.demo.config;
 
-import com.sun.xml.internal.ws.resources.HttpserverMessages;
 import org.springframework.web.bind.annotation.ControllerAdvice;
 import org.springframework.web.bind.annotation.ExceptionHandler;
-import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.ResponseBody;
-import org.springframework.web.servlet.ModelAndView;
 
 import javax.servlet.http.HttpServletRequest;
 
@@ -20,7 +17,7 @@ import javax.servlet.http.HttpServletRequest;
  * @ Author     ：tank
  * @ Date       ：Created in 18:59 2018/8/29
  * @ Description：全局捕获异常
- * @ Modified By：
+ * @ Modified By：tank
  * @Version:
  */
 

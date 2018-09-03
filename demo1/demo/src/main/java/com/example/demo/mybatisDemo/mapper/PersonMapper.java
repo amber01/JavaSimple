@@ -37,4 +37,6 @@ public interface PersonMapper {
 
     //根据传list的方式来查找
     public List<Person> selectAll3(List<Integer>list);
+
+    public int save(Person person);
 }

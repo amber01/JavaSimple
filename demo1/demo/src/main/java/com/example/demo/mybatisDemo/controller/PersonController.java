@@ -44,18 +44,22 @@ public class PersonController {
     @RequestMapping("/deleteById/{id}")
     public int deleteById(@PathVariable("id") Integer id)
     {
-            ResponseDataInfo response = new ResponseDataInfo();
-            response.code = 200;
-            response.message = "数据删除成功";
-            personService.deleteById(id);
 
-            return personService.deleteById(id);
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = 200;
+        response.message = "数据删除成功";
+        personService.deleteById(id);
+
+        return personService.deleteById(id);
     }
 
     //RESTful风格，在浏览器中输入查询的id，然后再返回
     @RequestMapping("/findById/{id}")
     public ResponseDataInfo findById(@PathVariable("id") int id)
     {
+
+        System.out.print("1.(未使用缓存)-->进入到了findById,id="+id);
+
         ResponseDataInfo response = new ResponseDataInfo();
         response.code = 200;
         response.message = "查询成功";
@@ -114,4 +118,16 @@ public class PersonController {
         return response;
     }
 
+    //http://127.0.0.1:8080/userInfo/findAll3?id=2,3,5
+    @RequestMapping("/save")
+    public ResponseDataInfo save(Person person){
+
+        System.out.print("update finish!");
+        ResponseDataInfo response = new ResponseDataInfo();
+        response.code = personService.save(person);;
+        response.message = "查询成功";
+        response.data = person;
+
+        return response;
+    }
 }

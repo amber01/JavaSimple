@@ -1,4 +1,5 @@
 package com.example.demo.mysqlDemo.service;
+import org.springframework.cache.annotation.Cacheable;
 import org.springframework.stereotype.Repository;
 import com.example.demo.mysqlDemo.bean.Cat;
 import com.example.demo.mysqlDemo.dao.CatDao;
@@ -45,6 +46,7 @@ public class CatService {
         catRepository.deleteById(id);
     }
 
+    @Cacheable(value = "id")
     //查询数据
     public Iterable<Cat> getAll(){
         return catRepository.findAll();

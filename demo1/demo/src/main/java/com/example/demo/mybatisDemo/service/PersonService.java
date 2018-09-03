@@ -34,4 +34,6 @@ public interface PersonService {
 
     //根据传list的方式来查找
     public List<Person> findAll3(List<Integer>list);
+
+    public int save(Person person);
 }

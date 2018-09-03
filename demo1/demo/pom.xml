@@ -129,6 +129,26 @@
             <version>2.0.4.RELEASE</version>
         </dependency>
 
+        <!--redis集成-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-data-redis</artifactId>
+        </dependency>
+
+        <!--Jackson依赖-->
+        <dependency>
+            <groupId>com.fasterxml.jackson.core</groupId>
+            <artifactId>jackson-core</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+        <dependency>
+            <groupId>com.fasterxml.jackson.module</groupId>
+            <artifactId>jackson-module-jaxb-annotations</artifactId>
+            <version>2.8.6</version>
+        </dependency>
+
+
+
     </dependencies>
 
     <build>
@@ -140,15 +160,16 @@
             </plugin>
 
             <!--热部署，配合devtools一起用-->
-            <plugin>
-                <groupId>org.springframework.boot</groupId>
-                <artifactId>spring-boot-maven-plugin</artifactId>
-                <configuration>
-                    <!-- fork 如果没有该配置，devtools不会起作用-->
-                    <fork>true</fork>
-                    <addResources>true</addResources>
-                </configuration>
-            </plugin>
+            <!--热部署，配合devtools一起用-->
+            <!--<plugin>-->
+                <!--<groupId>org.springframework.boot</groupId>-->
+                <!--<artifactId>spring-boot-maven-plugin</artifactId>-->
+                <!--<configuration>-->
+                    <!--&lt;!&ndash; fork 如果没有该配置，devtools不会起作用&ndash;&gt;-->
+                    <!--<fork>true</fork>-->
+                    <!--<addResources>true</addResources>-->
+                <!--</configuration>-->
+            <!--</plugin>-->
 
         </plugins>
     </build>

@@ -92,5 +92,11 @@
             #{id}
         </foreach>
     </select>
+    
+    <insert id="save">
+        insert into
+        person(id,name,email)
+        values (#{id},#{name},#{email})
+    </insert>
 
 </mapper>
