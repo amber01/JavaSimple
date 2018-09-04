@@ -1,0 +1,29 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<configuration dabug="false">
+    <appender name="FILE" class="ch.qos.logback.core.rolling.RollingFileAppender">
+        <!--日志生成位置-->
+        <File>/Users/tank/Documents/logs</File>
+        <!--日志生成格式-->
+        <encoder>
+            <Pattern>%d %5p [%t] %c:%L - %m%n</Pattern>
+        </encoder>
+        <!--日志生成每天打包压缩一次-->
+        <rollingPolicy class="ch.qos.logback.core.rolling.TimeBasedRollingPolicy">
+            <!--日志文件输出的文件名-->
+            <FileNamePattern>${LOG_HOME}/${PROJECT_NAME}.system-dev.%d{yyyy-MM-dd}.%i.log</FileNamePattern>
+            <!--日志文件保留天数-->
+            <MaxHistory>15</MaxHistory>
+            <!--日志文件最大的大小-->
+            <MaxFileSize>10MB</MaxFileSize>
+        </rollingPolicy>
+    </appender>
+
+    <!--日志生成级别-->
+    <root level="debug">
+        <appender-ref ref="FILE"></appender-ref>
+    </root>
+    <!--需要生成日志的包-->
+    <logger name="com.ssm" level="debug"/>
+    <logger name="org" level="error"/>
+
+</configuration>

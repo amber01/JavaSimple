@@ -36,4 +36,7 @@ public interface PersonService {
     public List<Person> findAll3(List<Integer>list);
 
     public int save(Person person);
+
+    //根据key来清除redis的缓存
+    public void deleteCache(int id);
 }

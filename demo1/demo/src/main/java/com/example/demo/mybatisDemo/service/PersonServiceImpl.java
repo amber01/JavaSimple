@@ -4,6 +4,7 @@ import com.example.demo.mybatisDemo.entity.Person;
 import com.example.demo.mybatisDemo.mapper.PersonMapper;
 import com.github.pagehelper.PageHelper;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.cache.annotation.CacheEvict;
 import org.springframework.cache.annotation.Cacheable;
 import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
@@ -44,6 +45,7 @@ public class PersonServiceImpl implements PersonService {
     @Cacheable(value = "person")
     public List<Person> findById(int id)
     {
+        System.out.println("2.(未使用缓存)-->进入到了findById,id="+id);
         return personMapper.findById(id);
     }
 
@@ -82,5 +84,12 @@ public class PersonServiceImpl implements PersonService {
     public int save(Person person)
     {
         return personMapper.save(person);
+    }
+
+    //根据key来清除redis的缓存
+    @Override
+    @CacheEvict(value = "person")
+    public void deleteCache(int id){
+        System.out.println("缓存清除成功");
     }
 }
