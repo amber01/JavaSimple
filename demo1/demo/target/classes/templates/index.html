@@ -1,0 +1,79 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>聊天室</title>
+
+    <style>
+        #message{
+            margin-top: 20px;
+            border: 1px solid gray;
+            padding: 20px;
+        }
+    </style>
+</head>
+<body>
+    <button onclick="conectWebSocket()">连接WebSocket</button>
+    <button onclick="closeWebSocket()">断开WebSocket</button>
+
+    <br/>
+    消息:<input id="text" type="text"/>
+    <button onclick="send()">发送消息</button>
+
+    <!--存放接受到的消息-->
+    <div id="message">
+
+    </div>
+
+<script>
+    //连接对象
+    var  websocket = null;
+    function conectWebSocket() {
+        //判断当前的浏览器是否支持websocket
+        if ("WebSocket" in window){
+            //websocket需要和MyWebSocket对应的value对应
+            websocket = new WebSocket("ws://localhost:8080/websocket");
+        }else {
+            alert("Not support websocket")
+        }
+
+        //客户端建立连接成功的方法
+        websocket.onopen = function (event) {
+            setMessageHtml("LOC MSG:连接成功");
+        }
+
+        //连接关闭
+        websocket.onclose = function (event) {
+            setMessageHtml("LOC MSG:连接关闭");
+        }
+
+        //连接异常
+        websocket.onerror = function (event) {
+            setMessageHtml("LOC MSG:连接异常");
+        }
+        
+        //接受到的消息
+        websocket.onmessage = function (event) {
+            setMessageHtml(event.data);
+        }
+    }
+
+    function closeWebSocket() {
+        websocket.Close();
+    }
+
+    function setMessageHtml(msg) {
+        var message = document.getElementById("message");
+        message.innerHTML += msg+"<br/>"; //换行
+    }
+
+    //发送消息
+    function send() {
+        var message = document.getElementById("text").value;
+        websocket.send(message);
+    }
+
+</script>
+
+</body>
+</html>

@@ -13,3 +13,8 @@
   复用同一个 WebSocket 连接。这些都是原来的 HTTP 不能做到的。
 
   4)无论是HTTP协议还是websocket他们的底层都是基于TCP/IP协议实现的。WebSocket需要像TCP一样，先建立连接，连接成功后才能相互通信。
+
+2.用websocket来做一个群聊和单聊的聊天系统
+  1）导入websocket依赖
+  2）创建一个websocket配置文件
+  
