@@ -43,7 +43,7 @@ public class MyWebSocket {
     @OnMessage
     public  void onMessage(String message,Session session){
         //群发消息给客户端
-        broadcast(message);
+        sendInfo(message);
     }
 
     /**
@@ -58,7 +58,7 @@ public class MyWebSocket {
     /**
      * 群发方法
      */
-    private void broadcast(String message){
+    public static void sendInfo(String message){
         for (MyWebSocket item:webSocketSet){
             //发送消息
             item.session.getAsyncRemote().sendText(message);
