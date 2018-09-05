@@ -3,11 +3,15 @@ package com.example.demo;
 import com.alibaba.fastjson.serializer.SerializerFeature;
 import com.alibaba.fastjson.support.config.FastJsonConfig;
 import com.alibaba.fastjson.support.spring.FastJsonHttpMessageConverter;
+import com.example.demo.config.JerseyConfig;
 import com.example.demo.mybatisDemo.interceptor.MyInterceptor;
+import org.glassfish.jersey.servlet.ServletContainer;
+import org.glassfish.jersey.servlet.ServletProperties;
 import org.mybatis.spring.annotation.MapperScan;
 import org.springframework.boot.SpringApplication;
 import org.springframework.boot.autoconfigure.SpringBootApplication;
 import org.springframework.boot.autoconfigure.http.HttpMessageConverters;
+import org.springframework.boot.web.servlet.ServletRegistrationBean;
 import org.springframework.context.annotation.Bean;
 import org.springframework.http.MediaType;
 import org.springframework.http.converter.HttpMessageConverter;
@@ -76,6 +80,16 @@ public class DemoApplication extends WebMvcConfigurationSupport {
         HttpMessageConverter<?> converter = fastConverter;
 
         return new HttpMessageConverters(converter);
+    }
+
+    //配合jersey框架使用，它是基于Java的一个轻量级RESTful风格的Web Services框架
+    @Bean
+    public ServletRegistrationBean servletRegistrationBean(){
+        //拦截请求/rest/*
+        ServletRegistrationBean bean = new ServletRegistrationBean(new ServletContainer(),"/rest/*");
+        //配置jerseyConfig
+        bean.addInitParameter(ServletProperties.JAXRS_APPLICATION_CLASS,JerseyConfig.class.getName());
+        return bean;
     }
 
     public static void main(String[] args) {

@@ -129,11 +129,24 @@
             <version>2.0.4.RELEASE</version>
         </dependency>
 
+        <!-- jersey 是基于Java的一个轻量级RESTful风格的Web Services框架 -->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-jersey</artifactId>
+            <version>2.0.4.RELEASE</version>
+        </dependency>
+
         <!-- 日志输入信息 -->
         <dependency>
             <groupId>ch.qos.logback</groupId>
             <artifactId>logback-classic</artifactId>
             <version>1.2.3</version>
+        </dependency>
+
+        <!--websocket相关-->
+        <dependency>
+            <groupId>org.springframework.boot</groupId>
+            <artifactId>spring-boot-starter-websocket</artifactId>
         </dependency>
 
         <!--redis集成-->
