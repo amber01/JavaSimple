@@ -17,19 +17,11 @@ import java.util.Map;
 @RequestMapping("/templates")  //这里对应sources目录下的templates目录
 public class IndexController {
 
+    //http://localhost:8080/templates/index
     @RequestMapping("index")
     public String index(){
         return "index";
     }
 
-
-    @RequestMapping(value="/pushVideoListToWeb",method= RequestMethod.POST,consumes = "application/json")
-    public @ResponseBody Map<String,Object> pushVideoListToWeb(@RequestBody Map<String,Object> param) {
-        Map<String,Object> result =new HashMap<String,Object>();
-
-        MyWebSocket.sendInfo("有新客户呼入,sltAccountId");
-
-        return result;
-    }
 
 }

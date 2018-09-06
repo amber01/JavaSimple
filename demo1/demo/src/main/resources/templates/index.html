@@ -13,11 +13,14 @@
     </style>
 </head>
 <body>
+
+    昵称:<input id="nickname" type="text"/>
     <button onclick="conectWebSocket()">连接WebSocket</button>
     <button onclick="closeWebSocket()">断开WebSocket</button>
 
     <br/>
     消息:<input id="text" type="text"/>
+    频道号:<input id="toUser" type="text"/>
     <button onclick="send()">发送消息</button>
 
     <!--存放接受到的消息-->
@@ -27,14 +30,26 @@
 
 <script>
     //连接对象
-    var  websocket = null;
+    var websocket = null;
+    var nickname = null;
     function conectWebSocket() {
+
+
+        nickname = document.getElementById("nickname").value;
+
+
+        if (nickname == ''){
+            alert("昵称不能为空");
+            return;
+        }
+
         //判断当前的浏览器是否支持websocket
         if ("WebSocket" in window){
-            //websocket需要和MyWebSocket对应的value对应
-            websocket = new WebSocket("ws://localhost:8080/websocket");
+            //websocket需要和MyWebSocket对应的value对应。将nickname传给后台去保存
+            websocket = new WebSocket("ws://localhost:8080/websocket/"+nickname);
         }else {
-            alert("Not support websocket")
+            alert("Not support websocket");
+            return;
         }
 
         //客户端建立连接成功的方法
@@ -70,7 +85,17 @@
     //发送消息
     function send() {
         var message = document.getElementById("text").value;
-        websocket.send(message);
+        var toUser = document.getElementById("toUser").value;
+        var socketMsg = {msg:message,toUser:toUser};
+        if (toUser == ''){ //填写的频道号码
+            socketMsg.type = 0; //群聊
+        }else{
+            socketMsg.type = 1; //单聊
+        }
+
+        //websocket.send(nickname + ":" + message);
+        //websocket.send(message);
+        websocket.send(JSON.stringify(socketMsg)); //将json对象转换成json字符串
     }
 
 </script>
