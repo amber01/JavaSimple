@@ -1,0 +1,67 @@
+server:
+  port: 8080
+  session-timeout: 30
+  tomcat.max-threads: 0
+  tomcat.uri-encoding: UTF-8
+
+spring:
+  datasource:
+    url: jdbc:mysql://localhost:3306/mmall?useSSL=false
+    username: root
+    password: 123456
+    driver-class-name: com.mysql.jdbc.Driver
+
+
+  thymeleaf:
+    cache: false  #开发过程建议关闭缓存
+  redis:
+    host: localhost
+    port: 6379
+    password: 123456
+    jedis:
+      pool:
+        max-active: 2000
+        min-idle: 50
+        max-idle: 500
+  jpa:
+    database : MYSQL
+    show-sql : true  #是否打印SQL
+    hibernate:
+      ddl-auto : update
+      naming-strategy : org.hibernate.cfg.ImprovedNamingStrategy
+    properties:
+      hibernate:
+        dialect : org.hibernate.dialect.MySQL5Dialect
+
+mybatis:
+  type-aliases-package: com.example.demo.mybatisDemo.entity
+  mapper-locations: classpath:mapper/*/*.xml
+
+  configuration:
+    lazy-loading-enabled: false
+    multiple-result-sets-enabled: true
+    use-column-label: true
+    default-statement-timeout: 25000
+    default-executor-type: reuse
+    map-underscore-to-camel-case: true
+    log-impl: org.apache.ibatis.logging.stdout.StdOutImpl
+
+#pagehelper分页插件
+pagehelper:
+    helperDialect: mysql
+    reasonable: true
+    supportMethodsArguments: true
+    params: count=countSql
+
+#actuator监控和管理生产环境信息
+management:
+  endpoints:
+    jmx:
+      exposure:
+        include: refresh,health,info
+
+#日志信息输出
+logging:
+  level:
+    org.springframework.web: DEBUG,CONSOLE
+    config: classpath:logback-dev.xml
