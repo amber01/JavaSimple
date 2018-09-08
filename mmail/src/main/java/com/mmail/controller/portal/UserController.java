@@ -66,4 +66,21 @@ public class UserController {
     public ServerResponse<String>checkValid(String str,String type){
         return iUserService.checkValid(str,type);
     }
+
+    @RequestMapping(value = "get_user_info.do",method = RequestMethod.GET)
+    @ResponseBody
+    public ServerResponse<User>getUserInfo(HttpSession session){
+        User user = (User) session.getAttribute(Const.CURRENT_USER);
+
+        if (user != null){
+            return ServerResponse.createBySuccess(user);
+        }
+        return ServerResponse.createByErrorMessage("用户未登录，无法获取当前用户信息");
+    }
+
+    //把密码提示问题返回给客户
+    public ServerResponse<String>forgetGetQuestion(String username){
+        return null;
+    }
+
 }

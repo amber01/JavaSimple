@@ -106,4 +106,19 @@ public class UserServiceImpl implements IUserService {
         }
         return ServerResponse.createBySuccessMessage("校验成功");
     }
+
+    @Override
+    public ServerResponse<String> selectQuestion(String username) {
+
+        //获取用户名数据库是否存在
+        ServerResponse validResponse = this.checkValid(username,Const.USERNAME);
+        if (validResponse.isSuccess()){
+            //用户不存在
+            return ServerResponse.createByErrorMessage("用户不存在");
+        }
+
+        String question = username.que
+
+        return null;
+    }
 }

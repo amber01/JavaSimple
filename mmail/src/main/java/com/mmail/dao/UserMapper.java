@@ -4,6 +4,8 @@ import com.mmail.pojo.User;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 
+import javax.websocket.server.PathParam;
+
 
 public interface UserMapper {
     int deleteByPrimaryKey(Integer id);
@@ -26,4 +28,7 @@ public interface UserMapper {
 
     //登录成功后返回user对象
     User selectLogin(@Param("username") String username, @Param("password") String password);
+
+    //获取用户问题
+    String selectQuestionByUsername(@Param("username") String username);
 }

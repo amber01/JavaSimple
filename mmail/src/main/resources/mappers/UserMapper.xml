@@ -181,5 +181,14 @@
       </if>
     </where>
   </select>
+  <select id="selectQuestionByUsername" resultType="java.lang.String">
+    select count(1) mmall_user
+    from mmall_user
+    <where>
+      <if test="email !=null and email !=''">
+        email = #{email};
+      </if>
+    </where>
+  </select>
 
 </mapper>
