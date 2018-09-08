@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.UserMapper" >
-  <resultMap id="BaseResultMap" type="pojo.User" >
+<mapper namespace="com.mmail.dao.UserMapper" >
+  <resultMap id="BaseResultMap" type="com.mmail.pojo.User" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="username" jdbcType="VARCHAR" javaType="java.lang.String" />
@@ -28,17 +28,17 @@
     delete from mmall_user
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.User" >
+  <insert id="insert" parameterType="com.mmail.pojo.User" >
     insert into mmall_user (id, username, password, 
       email, phone, question, 
       answer, role, create_time, 
       update_time)
     values (#{id,jdbcType=INTEGER}, #{username,jdbcType=VARCHAR}, #{password,jdbcType=VARCHAR}, 
       #{email,jdbcType=VARCHAR}, #{phone,jdbcType=VARCHAR}, #{question,jdbcType=VARCHAR}, 
-      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, #{createTime,jdbcType=TIMESTAMP}, 
-      #{updateTime,jdbcType=TIMESTAMP})
+      #{answer,jdbcType=VARCHAR}, #{role,jdbcType=INTEGER}, now(),
+      now())
   </insert>
-  <insert id="insertSelective" parameterType="pojo.User" >
+  <insert id="insertSelective" parameterType="com.mmail.pojo.User" >
     insert into mmall_user
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -98,14 +98,14 @@
         #{role,jdbcType=INTEGER},
       </if>
       <if test="createTime != null" >
-        #{createTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
       <if test="updateTime != null" >
-        #{updateTime,jdbcType=TIMESTAMP},
+        now(),
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.User" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmail.pojo.User" >
     update mmall_user
     <set >
       <if test="username != null" >
@@ -133,12 +133,12 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.User" >
+  <update id="updateByPrimaryKey" parameterType="com.mmail.pojo.User" >
     update mmall_user
     set username = #{username,jdbcType=VARCHAR},
       password = #{password,jdbcType=VARCHAR},
@@ -148,7 +148,38 @@
       answer = #{answer,jdbcType=VARCHAR},
       role = #{role,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
+  <!--查询数据库有没有对应的用户名-->
+  <!--resultType 参数类型   parameterType 返回值类型-->
+  <select id="checkUsername" resultType="int" parameterType="string">
+    select count(1) mmall_user
+    from mmall_user
+    <where>
+      <if test="username !=null and username !=''">
+        username = #{username};
+      </if>
+    </where>
+  </select>
+
+  <!--返回一个对象，所以返回要变成resultMap parameterType返回值是有多个，所以就传map -->
+  <select id="selectLogin" resultMap="BaseResultMap" parameterType="map">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_user
+    where username = #{username}
+    and password = #{password}
+  </select>
+  <select id="checkEmail" resultType="java.lang.Integer">
+    select count(1) mmall_user
+    from mmall_user
+    <where>
+      <if test="email !=null and email !=''">
+        email = #{email};
+      </if>
+    </where>
+  </select>
+
 </mapper>

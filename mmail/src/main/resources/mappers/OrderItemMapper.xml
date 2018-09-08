@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.OrderItemMapper" >
-  <resultMap id="BaseResultMap" type="pojo.OrderItem" >
+<mapper namespace="com.mmail.dao.OrderItemMapper" >
+  <resultMap id="BaseResultMap" type="com.mmail.pojo.OrderItem" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="user_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -30,7 +30,7 @@
     delete from mmall_order_item
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.OrderItem" >
+  <insert id="insert" parameterType="com.mmail.pojo.OrderItem" >
     insert into mmall_order_item (id, user_id, order_no, 
       product_id, product_name, product_image, 
       current_unit_price, quantity, total_price, 
@@ -38,9 +38,9 @@
     values (#{id,jdbcType=INTEGER}, #{userId,jdbcType=INTEGER}, #{orderNo,jdbcType=BIGINT}, 
       #{productId,jdbcType=INTEGER}, #{productName,jdbcType=VARCHAR}, #{productImage,jdbcType=VARCHAR}, 
       #{currentUnitPrice,jdbcType=DECIMAL}, #{quantity,jdbcType=INTEGER}, #{totalPrice,jdbcType=DECIMAL}, 
-      #{createTime,jdbcType=TIMESTAMP}, #{updateTime,jdbcType=TIMESTAMP})
+      now(), now())
   </insert>
-  <insert id="insertSelective" parameterType="pojo.OrderItem" >
+  <insert id="insertSelective" parameterType="com.mmail.pojo.OrderItem" >
     insert into mmall_order_item
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -113,7 +113,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.OrderItem" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmail.pojo.OrderItem" >
     update mmall_order_item
     <set >
       <if test="userId != null" >
@@ -141,15 +141,15 @@
         total_price = #{totalPrice,jdbcType=DECIMAL},
       </if>
       <if test="createTime != null" >
-        create_time = #{createTime,jdbcType=TIMESTAMP},
+        create_time = now(),
       </if>
       <if test="updateTime != null" >
-        update_time = #{updateTime,jdbcType=TIMESTAMP},
+        update_time = now(),
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.OrderItem" >
+  <update id="updateByPrimaryKey" parameterType="com.mmail.pojo.OrderItem" >
     update mmall_order_item
     set user_id = #{userId,jdbcType=INTEGER},
       order_no = #{orderNo,jdbcType=BIGINT},
@@ -160,7 +160,7 @@
       quantity = #{quantity,jdbcType=INTEGER},
       total_price = #{totalPrice,jdbcType=DECIMAL},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      update_time = #{updateTime,jdbcType=TIMESTAMP}
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

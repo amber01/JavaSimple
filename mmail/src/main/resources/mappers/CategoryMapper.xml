@@ -1,7 +1,7 @@
 <?xml version="1.0" encoding="UTF-8" ?>
 <!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd" >
-<mapper namespace="dao.CategoryMapper" >
-  <resultMap id="BaseResultMap" type="pojo.Category" >
+<mapper namespace="com.mmail.dao.CategoryMapper" >
+  <resultMap id="BaseResultMap" type="com.mmail.pojo.Category" >
     <constructor >
       <idArg column="id" jdbcType="INTEGER" javaType="java.lang.Integer" />
       <arg column="parent_id" jdbcType="INTEGER" javaType="java.lang.Integer" />
@@ -25,15 +25,15 @@
     delete from mmall_category
     where id = #{id,jdbcType=INTEGER}
   </delete>
-  <insert id="insert" parameterType="pojo.Category" >
+  <insert id="insert" parameterType="com.mmail.pojo.Category" >
     insert into mmall_category (id, parent_id, name, 
       status, sort_order, create_time, 
       update_time)
     values (#{id,jdbcType=INTEGER}, #{parentId,jdbcType=INTEGER}, #{name,jdbcType=VARCHAR}, 
       #{status,jdbcType=BIT}, #{sortOrder,jdbcType=INTEGER}, now(),
-      now()})
+      now())
   </insert>
-  <insert id="insertSelective" parameterType="pojo.Category" >
+  <insert id="insertSelective" parameterType="com.mmail.pojo.Category" >
     insert into mmall_category
     <trim prefix="(" suffix=")" suffixOverrides="," >
       <if test="id != null" >
@@ -82,7 +82,7 @@
       </if>
     </trim>
   </insert>
-  <update id="updateByPrimaryKeySelective" parameterType="pojo.Category" >
+  <update id="updateByPrimaryKeySelective" parameterType="com.mmail.pojo.Category" >
     update mmall_category
     <set >
       <if test="parentId != null" >
@@ -101,19 +101,19 @@
         create_time = #{createTime,jdbcType=TIMESTAMP},
       </if>
       <if test="updateTime != null" >
-        now(),
+        update_time = now(),
       </if>
     </set>
     where id = #{id,jdbcType=INTEGER}
   </update>
-  <update id="updateByPrimaryKey" parameterType="pojo.Category" >
+  <update id="updateByPrimaryKey" parameterType="com.mmail.pojo.Category" >
     update mmall_category
     set parent_id = #{parentId,jdbcType=INTEGER},
       name = #{name,jdbcType=VARCHAR},
       status = #{status,jdbcType=BIT},
       sort_order = #{sortOrder,jdbcType=INTEGER},
       create_time = #{createTime,jdbcType=TIMESTAMP},
-      now()
+      update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
 </mapper>

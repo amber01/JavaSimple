@@ -35,7 +35,9 @@ spring:
 
 mybatis:
   type-aliases-package: com.example.demo.mybatisDemo.entity
-  mapper-locations: classpath:mapper/*/*.xml
+  mapper-locations: classpath:mappers/*Mapper.xml
+
+
 
   configuration:
     lazy-loading-enabled: false

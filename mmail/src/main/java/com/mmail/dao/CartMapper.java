@@ -1,7 +1,9 @@
-package dao;
+package com.mmail.dao;
 
-import pojo.Cart;
+import com.mmail.pojo.Cart;
+import org.apache.ibatis.annotations.Mapper;
 
+@Mapper
 public interface CartMapper {
     int deleteByPrimaryKey(Integer id);
 

@@ -1,6 +1,6 @@
-package dao;
+package com.mmail.dao;
 
-import pojo.Shipping;
+import com.mmail.pojo.Shipping;
 
 public interface ShippingMapper {
     int deleteByPrimaryKey(Integer id);
