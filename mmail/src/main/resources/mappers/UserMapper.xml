@@ -182,13 +182,42 @@
     </where>
   </select>
   <select id="selectQuestionByUsername" resultType="java.lang.String">
-    select count(1) mmall_user
+    select
+    question
     from mmall_user
-    <where>
-      <if test="email !=null and email !=''">
-        email = #{email};
-      </if>
-    </where>
+    where username = #{username};
   </select>
+    <select id="checkAnswer" resultType="java.lang.Integer">
+    select
+    count(1)  <!--如果返回数量大于0就说明这个用户的回答是对的-->
+    from mmall_user
+    where username = #{username}
+    and question = #{question}
+    and answer = #{answer}
+    </select>
+
+    <update id="updatePasswordByUsername"  parameterType="com.mmail.pojo.User">
+        update mmall_user
+        set password = #{passwordNew},update_time = now()
+        where username = #{username}
+    </update>
+
+    <!--这里必须要加2个条件，防止横向越权。因为用户的password的很多都是一样，如果指定userId就不会了-->
+    <select id="checkPassword" resultType="java.lang.Integer">
+        select
+        count(1)
+        from mmall_user
+        where password = #{password}
+        and id = #{userId}
+    </select>
+
+    <!--id！=userId 的目的是为了防止数据库的email重复，如果等于的话，就表示这个email被其他人注册过了-->
+    <select id="checkEmailByUserId" resultType="java.lang.Integer">
+        select
+        count(1)
+        from mmall_user
+        where email = #{email}
+        and id != #{userId}
+    </select>
 
 </mapper>

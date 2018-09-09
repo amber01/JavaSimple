@@ -1,5 +1,7 @@
 package com.mmail.util;
 
+import com.mmail.common.Const;
+
 import java.security.MessageDigest;
 
 /**
@@ -18,10 +20,11 @@ public class MD5Util {
      * @param charsetname 编码
      * @return
      */
-    public static String MD5Encode(String origin, String charsetname){
+    public static String MD5Encode(String origin){
         String resultString = null;
+        String charsetname = "utf8";
         try{
-            resultString = new String(origin);
+            resultString = new String(origin + Const.PASSWORD_SALT);
             MessageDigest md = MessageDigest.getInstance("MD5");
             if(null == charsetname || "".equals(charsetname)){
                 resultString = byteArrayToHexString(md.digest(resultString.getBytes()));
