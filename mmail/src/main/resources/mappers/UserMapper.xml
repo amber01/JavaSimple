@@ -154,14 +154,10 @@
 
   <!--查询数据库有没有对应的用户名-->
   <!--resultType 参数类型   parameterType 返回值类型-->
-  <select id="checkUsername" resultType="int" parameterType="string">
+  <select id="checkUsername" resultType="java.lang.Integer">
     select count(1) mmall_user
     from mmall_user
-    <where>
-      <if test="username !=null and username !=''">
-        username = #{username};
-      </if>
-    </where>
+    where username = #{username}
   </select>
 
   <!--返回一个对象，所以返回要变成resultMap parameterType返回值是有多个，所以就传map -->

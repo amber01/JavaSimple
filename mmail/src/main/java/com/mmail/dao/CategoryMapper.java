@@ -1,6 +1,9 @@
 package com.mmail.dao;
 
 import com.mmail.pojo.Category;
+import org.apache.ibatis.annotations.Param;
+
+import java.util.List;
 
 public interface CategoryMapper {
     int deleteByPrimaryKey(Integer id);
@@ -14,4 +17,7 @@ public interface CategoryMapper {
     int updateByPrimaryKeySelective(Category record);
 
     int updateByPrimaryKey(Category record);
+
+    //根据parentId获取子节点的category信息
+    List<Category>selectCategoryChildrenByParentId(@Param("parentId") Integer parentId);
 }

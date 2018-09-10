@@ -21,6 +21,12 @@
     from mmall_category
     where id = #{id,jdbcType=INTEGER}
   </select>
+  <select id="selectCategoryChildrenByParentId" resultType="com.mmail.pojo.Category">
+    select
+    <include refid="Base_Column_List"/>  <!--返回时List的情况下必须加上这段-->
+    from mmall_category
+    where parent_id = #{parentId}
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_category
     where id = #{id,jdbcType=INTEGER}
@@ -116,4 +122,5 @@
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
   </update>
+
 </mapper>

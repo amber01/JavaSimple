@@ -226,7 +226,17 @@ public class UserServiceImpl implements IUserService {
             return ServerResponse.createByErrorMessage("找不到当前用户");
         }
 
+
         user.setPassword(StringUtils.EMPTY);
         return ServerResponse.createBySuccess("查询成功",user);
+    }
+
+    //校验是否是管理员
+    @Override
+    public ServerResponse checkAdminRole(User user) {
+        if (user != null && user.getRole().intValue() == Const.Role.ROLE_ADMIN){
+            return ServerResponse.createBySuccess();
+        }
+        return ServerResponse.createByError();
     }
 }

@@ -1,6 +1,7 @@
 package com.mmail.pojo;
 
-import org.codehaus.jackson.map.annotate.JsonSerialize;
+//import com.fasterxml.jackson.annotation.JsonIgnore;
+import com.fasterxml.jackson.databind.annotation.JsonSerialize;
 
 import java.util.Date;
 
@@ -10,6 +11,7 @@ public class User {
 
     private String username;
 
+    //@JsonIgnore
     private String password;
 
     private String email;
