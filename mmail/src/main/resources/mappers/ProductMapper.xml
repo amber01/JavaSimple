@@ -27,6 +27,25 @@
     from mmall_product
     where id = #{id,jdbcType=INTEGER}
   </select>
+    <select id="selectList" resultType="com.mmail.pojo.Product">
+      select
+      <include refid="Base_Column_List" />
+      from mmall_product
+      order by id asc  <!--用id的升序用来排序-->
+    </select>
+  <select id="selectByNameAndProductId" resultType="com.mmail.pojo.Product">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_product
+    <where>
+      <if test="productName !=null and productName !=''">
+        and name like #{productName}
+      </if>
+      <if test="productId !=null and productId !=''">
+        and id = #{productId}
+      </if>
+    </where>
+  </select>
   <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_product
     where id = #{id,jdbcType=INTEGER}

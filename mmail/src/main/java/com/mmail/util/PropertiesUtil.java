@@ -17,8 +17,10 @@ public class PropertiesUtil {
 
     private static Properties props;
 
+    //静态块要优于普通代码块，普通代码块又优于构造代码块
+    //静态代码块只执行一次。类被加载的时候执行。一般用它来做初始化静态变量
     static {
-        String fileName = "mmall.properties";
+        String fileName = "mmall.properties"; //配置文件路径
         props = new Properties();
         try {
             props.load(new InputStreamReader(PropertiesUtil.class.getClassLoader().getResourceAsStream(fileName),"UTF-8"));
@@ -28,7 +30,7 @@ public class PropertiesUtil {
     }
 
     public static String getProperty(String key){
-        String value = props.getProperty(key.trim());
+        String value = props.getProperty(key.trim());  //trim()去空
         if(StringUtils.isBlank(value)){
             return null;
         }
