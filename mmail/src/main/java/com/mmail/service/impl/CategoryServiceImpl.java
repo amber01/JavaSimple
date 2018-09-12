@@ -81,7 +81,7 @@ public class CategoryServiceImpl implements ICategoryService {
     //拿到这个categoryId之后要查找它的子节点，然后再判断子节点下面还有子节点，最后把他们再放在一起
     //递归查询本节点的id及子节点的id
     @Override
-    public ServerResponse selectCategoryAndChildrenById(Integer categoryId){
+    public ServerResponse<List<Integer>> selectCategoryAndChildrenById(Integer categoryId){
         Set<Category> categorySet = Sets.newHashSet();
         findChildCategory(categorySet,categoryId);
 

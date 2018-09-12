@@ -21,9 +21,42 @@
     from mmall_cart
     where id = #{id,jdbcType=INTEGER}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectCartByUserIdProductId" resultType="com.mmail.pojo.Cart">
+      select
+      <include refid="Base_Column_List" />
+      from mmall_cart
+      where user_id=#{userId}
+      and product_id=#{productId}
+    </select>
+  <select id="selectCartByUser" resultType="com.mmail.pojo.Cart">
+    select
+    <include refid="Base_Column_List" />
+    from mmall_cart
+    where user_id=#{userId}
+
+
+  </select>
+    <select id="selectCartProductCheckedStatusByUserId" resultType="java.lang.Integer">
+      <!--用户在购物车这个表中，有有未勾选的就表示不是全选。如果未勾选的数量是0就表示是全选-->
+      select
+      count(1)
+      from mmall_cart
+      where checked = 0
+      and user_id = #{userId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_cart
     where id = #{id,jdbcType=INTEGER}
+  </delete>
+  <delete id="deleteByUserIdProductIds" parameterType="java.lang.Integer">
+    delete from mmall_cart
+    where user_id = #{userId}
+    <if test="productIds != null">
+      and product_id in
+      <foreach collection="productIds" item="item" index="index" open="(" separator="," close=")">
+        #{item}
+      </foreach>
+    </if>
   </delete>
   <insert id="insert" parameterType="com.mmail.pojo.Cart" >
     insert into mmall_cart (id, user_id, product_id, 
