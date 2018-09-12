@@ -44,7 +44,11 @@
       where checked = 0
       and user_id = #{userId}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="selectCartProductCount" resultType="java.lang.Integer">
+    <!--NULLIF的作用是,当sum出来的值是null的情况下会报错。当时加了IFNULL的话，如果为空就取默认值0-->
+    select IFNULL(sum(quantity),0) as count from mmall_cart where user_id = #{userId}
+  </select>
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_cart
     where id = #{id,jdbcType=INTEGER}
   </delete>
@@ -148,5 +152,15 @@
       create_time = #{createTime,jdbcType=TIMESTAMP},
       update_time = now()
     where id = #{id,jdbcType=INTEGER}
+  </update>
+
+  <update id="checkedOrUncheckProduct">
+    update mmall_cart
+    set checked = #{checked},
+    update_time = now()
+    where user_id = #{userId}
+    <if test="productId != null">  <!--如果productId如果为空就表示全选或反选，不为空就表示选中某个指定的商品-->
+      and product_id = #{productId}
+    </if>
   </update>
 </mapper>

@@ -161,6 +161,21 @@ public class CartServiceImpl implements ICartService {
         return cartVo;
     }
 
+    //全选或者反选
+    public ServerResponse<CartVo> selectOrUnSelectAll(Integer userId,Integer checked,Integer productId)  {
+        //将购物车内所有的商品都充值未全选或者是反选，然后再调用getCartVoLimit方法把全选后或者反选后的返回给用户
+        cartMapper.checkedOrUncheckProduct(userId,checked,productId);
+        CartVo cartVo = this.getCartVoLimit(userId);
+        return ServerResponse.createBySuccess(cartVo);
+    }
+
+    public ServerResponse<Integer>getCartProductCount(Integer userId){
+        if (userId == null){
+            return ServerResponse.createBySuccess(0);
+        }
+        return ServerResponse.createBySuccess(cartMapper.selectCartProductCount(userId));
+    }
+
     //判断是不是全选
     private boolean getAllCheckedStatus(Integer userId){
         if (userId == null){
