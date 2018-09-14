@@ -42,7 +42,21 @@
       from mmall_order
       where order_no = #{orderNo}
     </select>
-    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+  <select id="selectByUserId" resultMap="BaseResultMap" parameterType="int">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_order
+    where user_id = #{userId}
+    order by create_time desc
+  </select>
+  <select id="selectAllOrder" resultType="com.mmail.pojo.Order">
+    SELECT
+    <include refid="Base_Column_List"/>
+    from mmall_order
+    order by create_time desc <!--根据创建时间做降序处理-->
+  </select>
+
+  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_order
     where id = #{id,jdbcType=INTEGER}
   </delete>

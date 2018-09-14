@@ -48,7 +48,14 @@
     <!--NULLIF的作用是,当sum出来的值是null的情况下会报错。当时加了IFNULL的话，如果为空就取默认值0-->
     select IFNULL(sum(quantity),0) as count from mmall_cart where user_id = #{userId}
   </select>
-  <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
+    <select id="selectCheckedCartByUserId" resultType="com.mmail.pojo.Cart">
+      select
+      <include refid="Base_Column_List" />
+      from mmall_cart
+      where checked = 1
+      and user_id = #{userId}
+    </select>
+    <delete id="deleteByPrimaryKey" parameterType="java.lang.Integer" >
     delete from mmall_cart
     where id = #{id,jdbcType=INTEGER}
   </delete>
