@@ -11,6 +11,7 @@ import org.apache.catalina.Server;
 import org.apache.commons.lang3.StringUtils;
 import org.omg.CORBA.ServerRequest;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.context.annotation.Primary;
 import org.springframework.stereotype.Service;
 
 import javax.servlet.http.HttpSession;
@@ -24,7 +25,8 @@ import java.util.UUID;
  * @Version:
  */
 
-@Service("iUserService")  //注入的属性名字iUserService
+@Service
+@Primary
 public class UserServiceImpl implements IUserService {
 
     @Autowired

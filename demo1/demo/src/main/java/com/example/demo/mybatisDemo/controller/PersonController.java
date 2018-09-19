@@ -1,6 +1,7 @@
 package com.example.demo.mybatisDemo.controller;
 
 import com.example.demo.mybatisDemo.entity.Person;
+import com.example.demo.mybatisDemo.service.MenuService;
 import com.example.demo.mybatisDemo.service.PersonService;
 import com.example.demo.showJsonDemo.model.ResponseDataInfo;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -28,6 +29,8 @@ public class PersonController {
 
     @Autowired
     PersonService personService;
+    @Autowired
+    private MenuService menuService;
 
     //********************myBatis的使用**********************//
     @RequestMapping(value = "/findAll/{pageNum}/{pageSize}", produces = {"application/json;charset=UTF-8"})
@@ -151,5 +154,10 @@ public class PersonController {
         response.data = null;
         personService.deleteCache(id);
         return response;
+    }
+
+    @RequestMapping("/getMenu")
+    public Object getMenu(){
+        return menuService.queryAll();
     }
 }
